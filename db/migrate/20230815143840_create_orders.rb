@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.string :address, null: false
       t.string :name, null: false
       t.integer :postage, null: false
-      t.integer :payment_method, null: false #e-numの実装しろ
+      t.integer :payment_method, null: false, default: 0
       t.integer :total_payment, null: false
       t.timestamps
     end
