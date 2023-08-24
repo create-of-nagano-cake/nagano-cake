@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   get 'customers/information' => 'public/customers#show'
   get 'customers/information/edit' => 'public/customers#edit'
-  patch 'customers/information' => 'public/customers#update'
+  patch 'customers/information/edit' => 'public/customers#update'
   get 'customers/information/confirm' => 'public/customers#confirm'
   patch 'customers/information/unavailable' => 'public/customers#unavailable'
   

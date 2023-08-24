@@ -1,7 +1,8 @@
 <%= render "public/sessions/header" %>
 
 <h3>マイページ</h3>
-<h3><strong>登録情報</strong></h3>
+<h3><strong>登録情報</strong>
+<%= link_to "編集する", customers_information_edit_path %></h3>
 
  <div>
    <p>氏名 <%= @customer.last_name %> <%= @customer.first_name %> </p>
