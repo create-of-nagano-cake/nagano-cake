@@ -1,0 +1,9 @@
+<%= render "admin/sessions/header" %>
+
+<h3>商品新規登録</h3>
+<%= form_with model: @item do |f| %>
+ <%= f.file_field :image, accept: "image/*" %>
+ <%= f.text_field :name %>
+ <%= f.text_area :introduction %>
+ <%= f.text_field :price %>
+<% end %> 

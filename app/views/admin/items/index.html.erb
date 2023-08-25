@@ -1,0 +1,8 @@
+<%= render "admin/sessions/header" %>
+
+<h3>商品一覧</h3>
+<% @items. each do |item| %>
+ <%= item.id %>
+ <%= item.name %>
+ <%= item.price %>
+<% end %> 
