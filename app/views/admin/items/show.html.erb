@@ -1,0 +1,10 @@
+<%= render "admin/sessions/header" %>
+<h3>商品詳細</h3>
+
+<div>
+  <%= image_tag @item.get_image(100,100) %>
+  <p>商品名<%= @item.name %></p>
+  <p>商品説明<%= @item.introduction %></p>
+  <p>税抜価格<%= @item.price %></p>
+  <%= link_to "編集する", edit_admin_item_path %>
+</div>

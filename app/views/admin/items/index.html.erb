@@ -1,8 +1,27 @@
 <%= render "admin/sessions/header" %>
 
-<h3>商品一覧</h3>
-<% @items. each do |item| %>
- <%= item.id %>
- <%= item.name %>
- <%= item.price %>
-<% end %> 
+<table>
+ <thead>
+  <tr>
+   <th>商品一覧</th>
+   <th><%= link_to "+", new_admin_item_path %></th>
+   <th colspan="2"></th>
+   </tr>
+ </thead>
+
+ <tbody>
+  <% @items. each do |item| %>
+   <tr>
+    <td><%= item.id %></td>
+    
+    <td>
+     <%= link_to admin_item_path(item.id) do %>
+      <%= item.name %>
+     <% end %>
+    </td>
+    
+    <td><%= item.price %></td>
+   </tr> 
+  <% end %> 
+ </tbody> 
+</table> 

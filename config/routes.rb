@@ -12,12 +12,9 @@ Rails.application.routes.draw do
   get 'admin' => 'admin/homes#top'
   
   #admin/itemsコントローラー
-  get 'admin/items' => 'admin/items#index'
-  get 'admin/items/new' => 'admin/items#new'
-  post 'admin/items' => 'admin/items#create'
-  get 'admin/items/:id' => 'admin/items#show'
-  get 'admin/items/:id/edit' => 'admin/items#edit'
-  patch 'admin/items/:id' => 'admin/items#update'
+  namespace :admin do
+   resources :items, only: [:index, :new, :create, :edit, :update, :show ]
+  end
  
   #public/customersコントローラー
   get 'customers/information' => 'public/customers#show'
