@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   
   #public/itemsコントローラー
-  namespace :public do
+  scope module: :public do
    resources :items, only: [:index, :show]
   end
   

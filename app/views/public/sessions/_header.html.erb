@@ -1,6 +1,9 @@
 <header>
   <% if customer_signed_in? %>
     <li>
+      <%= link_to "商品一覧", items_path %>
+    </li>
+    <li>
       <%= link_to "マイページ", customers_information_path %>
     </li>
     <li>
