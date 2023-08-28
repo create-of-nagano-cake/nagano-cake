@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   namespace :admin do
    resources :items, only: [:index, :new, :create, :edit, :update, :show ]
   end
- 
+  
+  #public/itemsコントローラー
+  namespace :public do
+   resources :items, only: [:index, :show]
+  end
+  
   #public/customersコントローラー
   get 'customers/information' => 'public/customers#show'
   get 'customers/information/edit' => 'public/customers#edit'
