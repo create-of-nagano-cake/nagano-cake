@@ -1,7 +1,7 @@
 <%= render "public/sessions/header" %>
 
 <h3>商品一覧</h3>
-<% @items. each do |item| %>
+<% @items.each do |item| %>
  <div>
   <%= link_to item_path(item.id) do %>
    <%= image_tag item.get_image(100,100) %>
