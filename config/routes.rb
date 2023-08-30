@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   get 'customers/information/confirm' => 'public/customers#confirm'
   patch 'customers/information/unavailable' => 'public/customers#unavailable'
   
+  #public/addressesコントローラー
+  resources :addresses, only: [:create ,:index, :edit, :update, :destroy]
+  
   #public/homesコントローラー
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
