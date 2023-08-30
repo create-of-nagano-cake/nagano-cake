@@ -1,7 +1,7 @@
 <%= render "admin/sessions/header" %>
 
 <h3>商品新規登録</h3>
-<%= form_with model: @item, url: admin_items_path, method: :post  do |f| %>
+<%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
  <div>
   <label>商品画像</label>
   <%= f.file_field :image, accept: "image/*" %>

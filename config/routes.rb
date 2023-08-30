@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   patch 'customers/information/unavailable' => 'public/customers#unavailable'
   
   #public/addressesコントローラー
-  resources :addresses, only: [:create ,:index, :edit, :update, :destroy]
+  scope module: :public do
+   resources :addresses, only: [:create ,:index, :edit, :update, :destroy]
+  end 
   
   #public/homesコントローラー
   root to: 'public/homes#top'
