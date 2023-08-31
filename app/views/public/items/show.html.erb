@@ -1,8 +1,12 @@
 <%= render "public/sessions/header" %>
 
 <div>
-<%= image_tag @item.get_image(100,100) %>
-<%= @item.name %>
-<%= @item.introduction %>
-<%= @item.price %>
-</div
+  <%= image_tag @item.get_image(100,100) %>
+  <%= @item.name %>
+  <%= @item.introduction %>
+  <%= @item.price %>
+  
+  <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+   <%= f.select :amount
+  
+</div>

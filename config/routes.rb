@@ -26,6 +26,11 @@ Rails.application.routes.draw do
    resources :items, only: [:index, :show]
   end
   
+  #piblic/cart_itemsコントローラー
+  scope module: :public do
+   resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all ]
+  end
+  
   #public/customersコントローラー
   get 'customers/information' => 'public/customers#show'
   get 'customers/information/edit' => 'public/customers#edit'

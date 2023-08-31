@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
+  has_many :items, dependent: :destroy
   
   def get_image(width, height)
     unless image.attached?
