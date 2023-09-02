@@ -4,10 +4,21 @@
   <%= image_tag @item.get_image(100,100) %>
   <%= @item.name %>
   <%= @item.introduction %>
-  <%= @item.price %>
+  <p><%= @item.with_tax_price %>(税込)</p>
   
   <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-   <%= f.hidden_field :cart_item, :value => @item.id %>
+  
+   <% if @cart_item.errors.any? %>
+     <h3><%= pluralize(@cart_item.errors.count, "error") %> prohibited this obj from being saved:</h3>
+     <ul>
+     <% @cart_item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+     <% end %> 
+     </ul>
+   <% end %>
+  
+   <%= f.hidden_field :item_id, :value => @item.id %>
+   <%= f.hidden_field :customer_id, :value => current_customer.id %>
    <%= f.select :amount, *[1..10] %>
    <%= f.submit "カートに入れる" %>
   <% end %> 
