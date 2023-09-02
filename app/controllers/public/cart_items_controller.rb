@@ -6,15 +6,19 @@ class Public::CartItemsController < ApplicationController
   end
   
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    
-    @cart_item.customer_id = current_customer.id
-    if @cart_item.save
-     redirect_to cart_items_path
-    else
-     @cart_items = CartItem.all  
-     render :index  
-    end  
+    @item = Item.find(params[:item_id])
+    @cart_item = current_customer.has_in_cart(@item.id)
+    if @cart_item
+     @cart_item.amount+cart_item_params[:amount]
+    else 
+     @cart_item = current_customer.cart_items.new(cart_item_params) 
+     @cart_item.item_id = @item.id
+     if @cart_item.save
+      redirect_to cart_items_path
+     else
+      @cart_items = CartItem.all  
+      render :index  
+     end  
   end  
   
   def update 
