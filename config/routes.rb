@@ -36,6 +36,14 @@ Rails.application.routes.draw do
    end 
   end
   
+  #public/ordersコントローラー
+  scope module: :public do
+   resources :orders, only: [:new, :index, :create, :show]
+  end
+  post 'orders/confirm' => 'public/orders#confirm'
+  get 'orders/finish' => 'public/orders#finish'
+  
+  
   #public/customersコントローラー
   get 'customers/information' => 'public/customers#show'
   get 'customers/information/edit' => 'public/customers#edit'
