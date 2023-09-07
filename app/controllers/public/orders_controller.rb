@@ -6,10 +6,18 @@ class Public::OrdersController < ApplicationController
   end
   
   def confirm
-    @order = Order.new(order_params)
-    @order.postal_code = current_customer.postal_code
-    @order.address = current_customer.address
-    @order.name = current_customer.first_name + current_customer.last_name
+    if @order = Order.new(order_params)
+     @order.save
+     redirect_to orders_finish_path
+    elsif @address = Address.find([:order][:address_id])
+     @address.save
+     redirect_to orders_finish_path
+    else 
+     @order.postal_code = current_customer.postal_code
+     @order.address = current_customer.address
+     @order.name = current_customer.first_name + current_customer.last_name
+     redirect_to orders_finish_path
+    end 
   end
   
   def finish
