@@ -4,6 +4,16 @@
 
 <div>
   <%= form_with model: @order, url: orders_confirm_path do |f| %>
+  
+   <% if @order.errors.any? %>
+     <h3><%= pluralize(@order.errors.count, "error") %> prohibited this obj from being saved:</h3>
+     <ul>
+     <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+     <% end %> 
+     </ul>
+   <% end %>
+  
    <div>
     <h3>支払方法</h3>
     <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
