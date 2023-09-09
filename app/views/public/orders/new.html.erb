@@ -3,7 +3,7 @@
 <h3>注文情報入力</h3>
 
 <div>
-  <%= form_with model: @order, url: orders_confirm_path do |f| %>
+  <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
   
    <% if @order.errors.any? %>
      <h3><%= pluralize(@order.errors.count, "error") %> prohibited this obj from being saved:</h3>

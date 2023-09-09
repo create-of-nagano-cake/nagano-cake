@@ -4,4 +4,8 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   belongs_to :customer
   
+  def subtotal
+    item.with_tax_price*amount
+  end
+  
 end

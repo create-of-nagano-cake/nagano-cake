@@ -37,10 +37,10 @@ Rails.application.routes.draw do
   end
   
   #public/ordersコントローラー
+  post 'orders/confirm' => 'public/orders#confirm'
   scope module: :public do
    resources :orders, only: [:new, :index, :create, :show]
   end
-  post 'orders/confirm' => 'public/orders#confirm'
   get 'orders/finish' => 'public/orders#finish'
   
   
