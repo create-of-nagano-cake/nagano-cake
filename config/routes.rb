@@ -38,10 +38,10 @@ Rails.application.routes.draw do
   
   #public/ordersコントローラー
   post 'orders/confirm' => 'public/orders#confirm'
+  get 'orders/finish' => 'public/orders#finish'
   scope module: :public do
    resources :orders, only: [:new, :index, :create, :show]
   end
-  get 'orders/finish' => 'public/orders#finish'
   
   
   #public/customersコントローラー

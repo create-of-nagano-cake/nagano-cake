@@ -8,4 +8,8 @@ class Order < ApplicationRecord
     item.with_tax_price*amount
   end
   
+  #def total_payment(order)
+    #orders.find_by(: item.id)
+  #end
+  
 end
