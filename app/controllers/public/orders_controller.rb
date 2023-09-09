@@ -6,6 +6,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def confirm
+    @total = 0
     @cart_item = current_customer.cart_items
     @order = Order.new(order_params)
     if params[:order][:select_address] == "0"
