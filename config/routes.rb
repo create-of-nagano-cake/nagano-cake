@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   #admin/homesコントローラー
   get 'admin' => 'admin/homes#top'
   
+  #admin/ordersコントローラー
+  namespace :admin do
+   resources :orders, only: [:show] 
+  end
+  
   #admin/customersコントローラー
   namespace :admin do
    resources :customers, only: [:index, :show, :edit, :update]
