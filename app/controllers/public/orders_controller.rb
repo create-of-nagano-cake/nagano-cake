@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
   
   def confirm
     @total = 0
-    @cart_item = current_customer.cart_items
+    @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
     if params[:order][:select_address] == "0"
      @order.postal_code = current_customer.postal_code
@@ -23,25 +23,28 @@ class Public::OrdersController < ApplicationController
     else
      #render :confirm
     end
+    @order_new = Order.new
   end
   
   def finish
   end
   
   def index
+   @order_details = OrderDetail.all
   end  
   
   def create
    @order = Order.new(order_params)
    @order.save
-   @cart_items = current_customer.cart_items.all
+   @cart_items = current_customer.cart_items
    
    @cart_items.each do |cart_item|
-    @order_detail = OrderDetail.new
-    @order_detail.item_id = cart_item.item.id
-    @order_detail.order_id = @order.id
-    @order_detail.amount = cart_item.amount
-    @order_detail.price = cart_item.item.with_tax_price
+    @order_details = OrderDetail.new
+    @order_details.item_id = cart_item.item.id
+    @order_details.order_id = @order.id
+    @order_details.amount = cart_item.amount
+    @order_details.price = cart_item.item.with_tax_price
+    @order_details.save
    end
    
    CartItem.destroy_all
@@ -56,11 +59,11 @@ class Public::OrdersController < ApplicationController
   
   def order_params
    #params.require(:order).permit(:customer_id, :postal_code, :address, :name, :postage, :payment_method, :total_payment)
-   params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_payment)
+   params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_payment, :customer_id, :postage)
   end
   
-  def order_detail_params
-   params.require(:order_detail).permit(:item_id, :order_id, :amount, :price)  
-  end  
+  #def order_detail_params
+   #params.require(:order_detail).permit(:item_id, :order_id, :amount, :price)  
+  #end  
   
 end
