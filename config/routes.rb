@@ -26,6 +26,11 @@ Rails.application.routes.draw do
    resources :items, only: [:index, :new, :create, :edit, :update, :show ]
   end
   
+  #admin/genresコントローラー
+  namespace :admin do
+   resources :genres, only: [:index, :create, :edit, :update]
+  end 
+  
   #public/itemsコントローラー
   scope module: :public do
    resources :items, only: [:index, :show]
