@@ -30,7 +30,8 @@ class Public::OrdersController < ApplicationController
   end
   
   def index
-   @order_details = OrderDetail.all
+   @orders = current_customer.orders
+   #@order_details = OrderDetail.all
   end  
   
   def create
@@ -53,6 +54,8 @@ class Public::OrdersController < ApplicationController
   end
   
   def show
+   @total = 0
+   @order = current_customer.orders.find(params[:id])
   end
   
   private
