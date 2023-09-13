@@ -96,9 +96,11 @@ ActiveRecord::Schema.define(version: 2023_09_12_134453) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "genre_id", null: false
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -108,6 +110,7 @@ ActiveRecord::Schema.define(version: 2023_09_12_134453) do
     t.integer "order_id", null: false
     t.integer "amount", null: false
     t.integer "price", null: false
+    t.integer "making_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -119,6 +122,7 @@ ActiveRecord::Schema.define(version: 2023_09_12_134453) do
     t.string "name", null: false
     t.integer "postage", null: false
     t.integer "payment_method", default: 0, null: false
+    t.integer "status", default: 0, null: false
     t.integer "total_payment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
