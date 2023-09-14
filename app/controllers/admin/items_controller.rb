@@ -10,6 +10,8 @@ class Admin::ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
+    @genre = Genre.find(params[:item][:genre_id])
+    @item.genre_id = @genre.id
     @item.save
     redirect_to admin_items_path
   end 
@@ -24,6 +26,8 @@ class Admin::ItemsController < ApplicationController
   
   def update
     @item = Item.find(params[:id])
+    @genre = Genre.find(params[:item][:genre_id])
+    @item.genre_id = @genre.id
     @item.update(item_params)
     redirect_to admin_item_path(@item.id)
   end  
@@ -31,7 +35,7 @@ class Admin::ItemsController < ApplicationController
   private
   
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :image, :genre)
+    params.require(:item).permit(:name, :introduction, :price, :image, :genre_id)
   end  
   
 end
