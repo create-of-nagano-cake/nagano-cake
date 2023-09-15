@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   #admin/ordersコントローラー
   namespace :admin do
-   resources :orders, only: [:show] 
+   resources :orders, only: [:show, :update] 
   end
   
   #admin/customersコントローラー
