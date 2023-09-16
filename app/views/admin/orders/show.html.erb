@@ -15,7 +15,8 @@
    <th>注文ステータス</th>
    <td>
     <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
-     <%= f.select :status, options_from_collection_for_select(Order.all, :id, :status_i18n) %>
+     <%= f.select :status, Order.statuses_i18n.invert %>
+     <%= f.submit "更新" %>
     <% end %> 
    </td>
   </tr>
@@ -28,7 +29,7 @@
    <th>単価（税込）</th>
    <th>数量</th>
    <th>小計</th>
-   <th></th>
+   <th>製作ステータス</th>
    <th colspan="5"></th>
    </tr>
  </thead>
@@ -43,6 +44,13 @@
     <td><%= order_detail.amount %></td>
     
     <td><%= order_detail.subtotal %></td>
+    
+    <td>
+     <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+     <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+     <%= f.submit "更新" %>
+     <% end %> 
+    </td>
     
     <% @total += order_detail.subtotal %>
     
