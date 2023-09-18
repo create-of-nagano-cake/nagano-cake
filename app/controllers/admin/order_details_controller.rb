@@ -4,11 +4,19 @@ class Admin::OrderDetailsController < ApplicationController
     @order_detail = OrderDetail.find(params[:id])
     @order = @order_detail.order
     @order_detail.update(order_detail_params)
-    redirect_to admin_order_path(@order.id)
+    @order_details = OrderDetail.all
     
-    if @order.status
-      
+    if @order_detail.making_status == OrderDetail.making_statuses.key(2)
+      @order.update(status: 2)
     end  
+    
+    @order_details.each do |order_detail|
+      if order_detail.making_status == OrderDetail.making_statuses.key(3)
+        @order.update(status: 3)
+      end  
+    end 
+    
+    redirect_to admin_order_path(@order.id)
   end
   
   private
