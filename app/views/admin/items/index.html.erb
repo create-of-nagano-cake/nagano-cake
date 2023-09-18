@@ -1,38 +1,46 @@
 <%= render "admin/sessions/header" %>
 
-<div>
- <h3>商品一覧   <%= link_to "+", new_admin_item_path %></h3>
-</div>
-<table>
- <thead>
-  <tr>
-   <th>商品ID</th>
-   <th>商品名</th>
-   <th>税抜価格</th>
-   <th>ジャンル</th>
-   <th>ステータス</th>
-   <th colspan="5"></th>
-   </tr>
- </thead>
+<div class='container'>
+ <div class='row'>
+  <div class='col-8 offset-2'>
+   <div class='row'>
+    <div class='col mt-4 mb-4'>
+     <h3>商品一覧   <%= link_to "+", new_admin_item_path %></h3>
+    </div>
+   </div>
+   <table class="table">
+    <thead>
+     <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+      <th colspan="5"></th>
+      </tr>
+    </thead>
 
- <tbody>
-  <% @items.each do |item| %>
-  
-   <tr>
-    <td><%= item.id %></td>
-    
-    <td>
-     <%= link_to admin_item_path(item.id) do %>
-      <%= item.name %>
+    <tbody>
+     <% @items.each do |item| %>
+
+      <tr>
+       <td><%= item.id %></td>
+
+       <td>
+        <%= link_to admin_item_path(item.id) do %>
+         <%= item.name %>
+        <% end %>
+       </td>
+
+       <td><%= item.price %></td>
+
+       <td><%= item.genre.name %></td>
+
+       <td></td>
+      </tr>
      <% end %>
-    </td>
-    
-    <td><%= item.price %></td>
-    
-    <td><%= item.genre.name %></td>
-    
-    <td></td>
-   </tr> 
-  <% end %> 
- </tbody> 
-</table> 
+    </tbody>
+   </table>
+  </div>
+ </div>
+</div>
