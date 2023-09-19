@@ -20,7 +20,7 @@ class Public::CustomersController < ApplicationController
   def unavailable
     @customer = current_customer
     @customer.update(is_deleted: true)
-    redirect_to new_customer_session_path
+    redirect_to root_path
   end  
   
   private

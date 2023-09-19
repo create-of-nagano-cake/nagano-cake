@@ -2,11 +2,11 @@
 
 <h3>商品一覧</h3>
 <% @items.each do |item| %>
- <div>
+ <% if item.is_active == true %>
   <%= link_to item_path(item.id) do %>
    <%= image_tag item.get_image(100,100) %>
   <% end %>
   <%= item.name %>
   <%= item.price %>
- </div>
-<% end %> 
+ <% end %> 
+<% end %>

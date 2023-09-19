@@ -10,10 +10,12 @@
 <div>
   <h3>新着商品</h3>
   <% @items.each do |item| %>
-   <%= image_tag item.get_image(100,100) %>
-   <%= link_to item_path(item.id) do %>
-    <%= item.name %>
+   <% if item.is_active == true %>
+    <%= image_tag item.get_image(100,100) %>
+    <%= link_to item_path(item.id) do %>
+     <%= item.name %>
+    <% end %>  
+    <%= item.price %>
    <% end %>  
-   <%= item.price %>
   <% end %> 
 </div>
