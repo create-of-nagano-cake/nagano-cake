@@ -1,13 +1,27 @@
 <%= render "admin/sessions/header" %>
 
-<h3>ジャンル編集</h3>
+<div class='container'>
+ <div class='row'>
+  <div class='col-6 offset-1'>
+   <div class='row'>
+    <div class='col mt-4 mb-4'>
+     <div class="bg-secondary">
+      <h3>ジャンル編集</h3>
+     </div>
 
-<table>
-  <tr>
-    <th>ジャンル名</th>
-    <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
-     <td><%= f.text_field :name %></td>
-     <td><%= f.submit "変更を保存" %></td>
-    <% end %> 
-  </tr>
-</table>
+      <table>
+        <tr>
+         <div class="row"> 
+          <th class="col-3 offset-1">ジャンル名</th>
+         </div> 
+          <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
+           <td><%= f.text_field :name, class: "mr-2" %></td>
+           <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
