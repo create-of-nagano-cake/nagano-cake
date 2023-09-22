@@ -1,12 +1,42 @@
 <%= render "public/sessions/header" %>
 
-<h3>商品一覧</h3>
-<% @items.each do |item| %>
- <% if item.is_active == true %>
-  <%= link_to item_path(item.id) do %>
-   <%= image_tag item.get_image(100,100) %>
-  <% end %>
-  <%= item.name %>
-  <%= item.price %>
- <% end %> 
-<% end %>
+<div class='container'>
+ <div class='row'>
+  <div class='col-6 offset-1'>
+   <div class='row'>
+    <div class='col mt-4 mb-4'>
+
+     <div class="d-flex justify-content-start">
+      <h3>商品一覧</h3>
+      <div class="d-flex align-items-center">
+       （全<%= @items.count %>件）
+      </div>
+     </div>
+
+     <div class="row">
+      <% @items.each do |item| %>
+       <div class="col-3">
+         <div>
+          <%= link_to item_path(item.id) do %>
+           <%= image_tag item.get_image(100,100) %>
+          <% end %>
+         </div>
+         
+         <div>
+          <%= item.name %>
+         </div>
+         
+         <div>
+          <%= item.price %>
+         </div> 
+       </div>
+      <% end %>
+     </div>
+     
+     <%= paginate @items %>
+     
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
