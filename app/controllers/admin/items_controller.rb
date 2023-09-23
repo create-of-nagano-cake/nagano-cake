@@ -13,7 +13,7 @@ class Admin::ItemsController < ApplicationController
     @genre = Genre.find(params[:item][:genre_id])
     @item.genre_id = @genre.id
     @item.save
-    redirect_to admin_items_path
+    redirect_to admin_item_path(@item.id)
   end 
   
   def show
