@@ -1,0 +1,85 @@
+<%= render "public/sessions/header" %>
+
+<div class='container'>
+ 
+ <div class="row">
+  <div class="col-6 offset-1">
+   <div class="bg-secondary">
+    <h3>注文履歴詳細</h3>
+   </div>
+  </div>
+ </div>
+
+ <div class='row'>
+  <div class='col-6 offset-1'>
+   <div class='row'>
+    <div class='col mt-4 mb-4'>
+     <h4>注文情報</h4>
+     <table class="table">
+       <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
+        
+       <tr>
+        <th>配送先</th>
+        <td>
+          〒<%= @order.postal_code %>  
+          <%= @order.address %>
+          <%= @order.name %>
+        </td>
+       </tr>
+        
+       <tr><th>支払方法</th><td><%= @order.payment_method_i18n %></td></tr>
+       
+       <tr><th>ステータス</th><td><%= @order.status_i18n %></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+  
+  <div class="col-4">
+   <div class='row'>
+    <div class='col mt-4 mb-4'> 
+     <h4>請求情報</h4>
+     <table class="table">
+      <% @order.order_details.each do |order_detail| %>
+       <% @total += order_detail.subtotal %>
+      <% end %> 
+       <tr><th>商品合計</th><td><%= @total %></td></tr>
+           
+       <tr><th>送料</th><td>800</td></tr>
+        
+       <tr><th>ご請求額</th><td><%= @total + 800 %></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div> 
+
+ <div class="row">
+  <div class="col-10 offset-1">
+   <h4>注文内容</h4>
+   <table class="table">
+    <thead>
+     <tr>
+      <th>商品</th>
+      <th>単価(税込)</th>
+      <th>個数</th>
+      <th>小計</th>
+      <th colspan="4"></th>
+     </tr>     
+    </thead>
+    
+    <tbody>
+     <% @order.order_details.each do |order_detail| %>     
+      <tr>
+       <td><%= order_detail.item.name %></td>
+       <td><%= order_detail.price %></td>
+       <td><%= order_detail.amount %></td>
+       <td><%= order_detail.subtotal %></td>
+      </tr>
+     <% end %> 
+    </tbody>
+   </table>
+  </div>
+ </div>
+
+</div> 
